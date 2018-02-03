@@ -38,7 +38,7 @@
             v-if="filteredPackages.length"
             name="packages"
             :list="filteredPackages"
-            :per="6"
+            :per="10"
           >
             <li v-for="pkg in paginated('packages')" :key="pkg.name">
               <SinglePackage :sortedBy="sortBy" :pkg="pkg" />
@@ -56,7 +56,8 @@
         
         <transition name="fade">
           <div class="loading" v-if="isLoading">
-            Loading... {{ packagesLoaded }} / {{ packageList.length }} packages
+            <p>Loading packages</p>
+            <progress :value="packagesLoaded" :max="packageList.length" />
           </div>
         </transition>
       </div>
@@ -234,6 +235,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
