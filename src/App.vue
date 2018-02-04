@@ -4,7 +4,8 @@
       
       <div class="sidebar">
   
-        <h1>Craft Plugins</h1>
+        <img class="craft-logo" src="./assets/craft-logo.svg" />
+        <h1 class="page-title">Plugins</h1>
         
         <label for="search">Search</label>
         <input v-model="searchTerm" id="search" placeholder="e.g., SEO" />
@@ -164,7 +165,7 @@ export default {
   --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --c-colour: #2c3e50;
-  --c-primary: #ff3b3f;
+  --c-primary: #da5a47;
 }
 
 #app {
@@ -247,5 +248,15 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.craft-logo {
+  margin-top: 0.67em;
+  max-width: 165px;
+}
+
+.page-title {
+  margin-top: 0;
+  font-weight: 200;
 }
 </style>
