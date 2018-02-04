@@ -2,9 +2,14 @@
   <div>
     <h2 class="title">{{ pkg.name }}</h2>
     <p>{{ pkg.description }}</p>
-    <p>{{ downloads }}</p>
-    <p>Favs: {{ pkg.favers }}</p>
-    <p>GitHub Stars: {{ pkg.github_stars }}</p>
+    <p>
+      <img src="https://icongr.am/feather/download.svg?size=20" />
+      {{ downloads }}
+    </p>
+    <p>
+      <img src="https://icongr.am/feather/github.svg?size=20" />
+      GitHub Stars: {{ pkg.github_stars }}
+    </p>
     <p>Repository: <a class="repo-link" :href="pkg.repository" target="_blank" rel="noopener">{{ pkg.repository }}</a> </p>
   </div>
 </template>
