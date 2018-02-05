@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div class="content">
-      
       <Sidebar />
-      
       <PackageList />
     </div>
   </div>
