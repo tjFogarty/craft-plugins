@@ -2,19 +2,20 @@ import axios from 'axios'
 import api from '../api'
 import storage from '../api/storage'
 import * as types from './mutation-types'
-import { INCREMENT_PACKAGES_LOADED_COUNT } from './mutation-types';
+import { INCREMENT_PACKAGES_LOADED_COUNT } from './mutation-types'
 
 const PACKAGE_LIST = 'package_list'
 const PACKAGE_LIST_DATA = 'package_list_data'
 
 function formatPackage(pkg) {
   let single = pkg.data.package
+  let { total = 0, daily = 0, monthly = 0 } = single.downloads
 
   return {
     ...single,
-    downloads_total: single.downloads.total,
-    downloads_daily: single.downloads.daily,
-    downloads_monthly: single.downloads.monthly
+    downloads_total: total,
+    downloads_daily: daily,
+    downloads_monthly: monthly
   }
 }
 
@@ -51,7 +52,7 @@ export default {
         )
       )
 
-      let data = responses.map(formatPackage)
+      let data = responses.filter(pkg => pkg !== null).map(formatPackage)
 
       commit(types.SET_LOADING, false)
       commit(types.SET_PACKAGES, storage.save(PACKAGE_LIST_DATA, data))
