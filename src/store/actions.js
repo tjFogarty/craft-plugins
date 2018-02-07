@@ -26,10 +26,13 @@ export default {
     if (!localData) {
       commit(types.SET_LOADING, true)
       let { data } = await api.get('packages/list.json?type=craft-plugin')
-      commit(
-        types.SET_PACKAGE_LIST,
+      commit(types.SET_PACKAGE_LIST, data.packageNames)
+
+      try {
         storage.save(PACKAGE_LIST, data.packageNames)
-      )
+      } catch (e) {
+        console.log(e)
+      }
     } else {
       commit(types.SET_PACKAGE_LIST, localData)
       commit(types.SET_LOADING, false)
@@ -55,7 +58,13 @@ export default {
       let data = responses.filter(pkg => pkg !== null).map(formatPackage)
 
       commit(types.SET_LOADING, false)
-      commit(types.SET_PACKAGES, storage.save(PACKAGE_LIST_DATA, data))
+      commit(types.SET_PACKAGES, data)
+
+      try {
+        storage.save(PACKAGE_LIST_DATA, data)
+      } catch (e) {
+        console.log(e)
+      }
     } else {
       commit(types.SET_LOADING, false)
       commit(types.SET_PACKAGES, localData)
