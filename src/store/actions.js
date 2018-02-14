@@ -8,8 +8,19 @@ const PACKAGE_LIST = 'package_list'
 const PACKAGE_LIST_DATA = 'package_list_data'
 
 function formatPackage(pkg) {
+  console.log(pkg, pkg.data, pkg.data.package)
   let single = pkg.data.package
-  let { total = 0, daily = 0, monthly = 0 } = single.downloads
+  let total = 0
+  let daily = 0
+  let monthly = 0
+
+  if (single.downloads) {
+    total = single.downloads.total || 0
+    daily = single.downloads.daily || 0
+    monthly = single.downloads.monthly || 0
+  }
+
+  console.log(total)
 
   return {
     ...single,
